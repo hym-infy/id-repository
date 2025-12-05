@@ -22,6 +22,7 @@ CREATE INDEX IF NOT EXISTS idx_cred_hash_partner_deleted ON idrepo.credential_re
 CREATE INDEX IF NOT EXISTS idx_cred_expiry_ts ON idrepo.credential_request_status(id_expiry_timestamp);
 CREATE INDEX IF NOT EXISTS idx_cred_status_cr_dtimes ON idrepo.credential_request_status(status, cr_dtimes);
 CREATE INDEX idx_crs_hash_not_deleted ON idrepo.credential_request_status (individual_id_hash) WHERE is_deleted = false;
+CREATE INDEX IF NOT EXISTS idx_uin_status ON idrepo.uin USING btree (status_code);
 
 ALTER TABLE credential_request_status SET (autovacuum_vacuum_scale_factor = 0.05, autovacuum_vacuum_threshold = 1000, autovacuum_analyze_scale_factor = 0.03, autovacuum_analyze_threshold = 1000);
 ALTER TABLE channel_info SET (autovacuum_vacuum_scale_factor = 0.05, autovacuum_vacuum_threshold = 500, autovacuum_analyze_scale_factor = 0.03, autovacuum_analyze_threshold = 500);
